@@ -12,7 +12,11 @@ def start_client(host, port, public_key, message):
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client.connect((host, port))
 
-    r_blind = number.getPrime(16)
+    found = False
+    while not found:
+        r_blind = number.getPrime(100)
+        if public_key.n % r_blind:
+            found = True
     blinded = public_key.blind(message, r_blind)
 
     client.send(fill(str(blinded)))
