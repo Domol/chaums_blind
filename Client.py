@@ -30,7 +30,6 @@ def main():
         opts, _ = getopt.getopt(sys.argv[1:], "o:p:K:M:")
 
     except getopt.GetoptError:
-        print "ERROR"
         sys.exit(2)
 
     for opt, arg in opts:
